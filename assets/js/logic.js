@@ -83,7 +83,7 @@ function checkAnswer(event) {
       //timeLeft < 1
       endQuiz();
     }
-    // audioInCorrect.play();
+    audioInCorrect.play();
   }
   giveFeedback.classList.remove("hide");
 }
@@ -114,7 +114,6 @@ submitButton.addEventListener("click", saveScore);
 startButton.addEventListener("click", startQuiz);
 
 var downloadTimer = setInterval(function () {
-  // alert("test");
   if (timeLeft <= 0) {
     clearInterval(downloadTimer);
     endQuiz();
