@@ -16,7 +16,18 @@ var audioCorrect = document.getElementById("audio-correct");
 var audioInCorrect = document.getElementById("audio-incorrect");
 var submitButton = document.querySelector("#submit");
 
+function startTimer() {
+  var downloadTimer = setInterval(function () {
+    if (timeLeft <= 0) {
+      clearInterval(downloadTimer);
+      endQuiz();
+    }
+    timer.innerHTML = timeLeft;
+    timeLeft -= 1;
+  }, 1000);
+}
 function startQuiz() {
+  startTimer();
   var currentQuestion = questions[currentQuestionIndex];
   var choices = currentQuestion.choices;
   console.log("currentQuestion.choices : " + currentQuestion.choices); //writes the answer options
@@ -112,15 +123,6 @@ function saveScore() {
 
 submitButton.addEventListener("click", saveScore);
 startButton.addEventListener("click", startQuiz);
-
-var downloadTimer = setInterval(function () {
-  if (timeLeft <= 0) {
-    clearInterval(downloadTimer);
-    endQuiz();
-  }
-  timer.innerHTML = timeLeft;
-  timeLeft -= 1;
-}, 1000);
 
 submitButton.onclick = function () {
   //location.href = "highscores.html";
